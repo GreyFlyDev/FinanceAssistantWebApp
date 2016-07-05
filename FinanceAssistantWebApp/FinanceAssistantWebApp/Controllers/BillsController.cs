@@ -20,6 +20,8 @@ namespace FinanceAssistantWebApp.Controllers
         public ActionResult Index()
         {
             string currentUserId = User.Identity.GetUserId();
+            TempData["CurrentUserId"] = currentUserId;
+
             List<Bill> bills = db.Bills.Where(b => b.UserId == currentUserId).ToList();
 
 
@@ -37,21 +39,6 @@ namespace FinanceAssistantWebApp.Controllers
             ViewBag.TotalDaily = dailyTotal;
 
             return View(bills);
-        }
-
-        // GET: Bills/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bill bill = db.Bills.Find(id);
-            if (bill == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bill);
         }
 
         // GET: Bills/Create
@@ -105,6 +92,7 @@ namespace FinanceAssistantWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                bill.UserId = TempData["CurrentUserId"].ToString();
                 db.Entry(bill).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

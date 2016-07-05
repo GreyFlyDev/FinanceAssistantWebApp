@@ -7,7 +7,7 @@ namespace FinanceAssistantWebApp.Models
 {
     public class Bill
     {
-        public decimal TotalBillAmount;
+        public decimal TotalBillAmount; 
         public int BillId { get; set; }
         public string BillTitle { get; set; }
         public DateTime DueDate { get; set; }
