@@ -28,15 +28,18 @@ namespace FinanceAssistantWebApp.Controllers
 
             foreach (var b in bills)
             {
-                totalBillAmount += b.Amount;
+                if(b.Paid == false)
+                {
+                    totalBillAmount += b.Amount;
+                }
             }
 
             decimal weeklyTotal = totalBillAmount / 4;
             decimal dailyTotal = weeklyTotal / 7;
 
-            ViewBag.TotalAmount = totalBillAmount;
-            ViewBag.TotalWeekly = weeklyTotal;
-            ViewBag.TotalDaily = dailyTotal;
+            ViewBag.TotalAmount = totalBillAmount.ToString("0.00");
+            ViewBag.TotalWeekly = weeklyTotal.ToString("0.00");
+            ViewBag.TotalDaily = dailyTotal.ToString("0.00");
 
             DateTime currentDate = DateTime.Now;
             var firstOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
