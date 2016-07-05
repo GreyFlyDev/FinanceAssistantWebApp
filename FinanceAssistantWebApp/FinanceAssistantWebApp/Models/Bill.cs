@@ -14,6 +14,6 @@ namespace FinanceAssistantWebApp.Models
         public string PayLink { get; set; }
         public bool Paid { get; set; }
 
-        public string UserId { get; set; }
+        public string UserId { get; set;  }
     }
 }
