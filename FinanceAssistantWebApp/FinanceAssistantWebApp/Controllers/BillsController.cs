@@ -38,6 +38,7 @@ namespace FinanceAssistantWebApp.Controllers
         }
 
         // GET: Bills/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace FinanceAssistantWebApp.Controllers
             if (ModelState.IsValid)
             {
                 bill.UserId = User.Identity.GetUserId();
+                bill.Paid = false;
 
                 db.Bills.Add(bill);
                 db.SaveChanges();
