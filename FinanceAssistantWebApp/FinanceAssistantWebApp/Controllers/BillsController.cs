@@ -21,6 +21,21 @@ namespace FinanceAssistantWebApp.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
             List<Bill> bills = db.Bills.Where(b => b.UserId == currentUserId).ToList();
+
+
+            decimal totalBillAmount = 0;
+            foreach(var b in bills)
+            {
+                totalBillAmount += b.Amount;
+            }
+
+            decimal weeklyTotal = totalBillAmount / 4;
+            decimal dailyTotal = weeklyTotal / 7;
+
+            ViewBag.TotalAmount = totalBillAmount;
+            ViewBag.TotalWeekly = weeklyTotal;
+            ViewBag.TotalDaily = dailyTotal;
+
             return View(bills);
         }
 
