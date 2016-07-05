@@ -23,10 +23,10 @@ namespace FinanceAssistantWebApp.Controllers
             TempData["CurrentUserId"] = currentUserId;
 
             List<Bill> bills = db.Bills.Where(b => b.UserId == currentUserId).ToList();
-
-
+            
             decimal totalBillAmount = 0;
-            foreach(var b in bills)
+
+            foreach (var b in bills)
             {
                 totalBillAmount += b.Amount;
             }
@@ -37,6 +37,17 @@ namespace FinanceAssistantWebApp.Controllers
             ViewBag.TotalAmount = totalBillAmount;
             ViewBag.TotalWeekly = weeklyTotal;
             ViewBag.TotalDaily = dailyTotal;
+
+            DateTime currentDate = DateTime.Now;
+            var firstOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+
+            if (DateTime.Now == firstOfMonth)
+            {
+                foreach(var b in bills)
+                {
+                    b.Paid = false;
+                }
+            }
 
             return View(bills);
         }
