@@ -19,7 +19,9 @@ namespace FinanceAssistantWebApp.Controllers
         // GET: Bills
         public ActionResult Index()
         {
-            return View(db.Bills.ToList());
+            string currentUserId = User.Identity.GetUserId();
+            List<Bill> bills = db.Bills.Where(b => b.UserId == currentUserId).ToList();
+            return View(bills);
         }
 
         // GET: Bills/Details/5
