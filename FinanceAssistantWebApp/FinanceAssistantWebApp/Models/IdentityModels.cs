@@ -25,6 +25,8 @@ namespace FinanceAssistantWebApp.Models
         {
         }
 
+        public DbSet<Bill> Bills { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
