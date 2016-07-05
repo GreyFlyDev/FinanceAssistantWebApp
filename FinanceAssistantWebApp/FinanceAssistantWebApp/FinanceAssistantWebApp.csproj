@@ -238,7 +238,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Bills\Create.cshtml" />
     <Content Include="Views\Bills\Delete.cshtml" />
-    <Content Include="Views\Bills\Details.cshtml" />
     <Content Include="Views\Bills\Edit.cshtml" />
     <Content Include="Views\Bills\Index.cshtml" />
   </ItemGroup>
